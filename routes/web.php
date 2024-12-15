@@ -3,12 +3,13 @@
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ElastisearchController;
+use App\Http\Middleware\EnsureTokenKeyIsValid;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/user', [HomeController::class, 'index']);
+Route::get('/user', [HomeController::class, 'index'])->middleware(EnsureTokenKeyIsValid::class);;
 
 // Elastisearch
 
